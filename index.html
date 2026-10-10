@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meditations and Enchiridion by Theme</title>
+<meta name="description" content="Marcus Aurelius' Meditations and Epictetus' Enchiridion organized by theme, with Tamil translations, notes, highlights and cloud sync.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header><button class="btn" id="menu" aria-label="Choose themes">Themes</button><div class="seg" id="libsw" role="group" aria-label="Choose book"><button data-l="med">Meditations</button><button data-l="enc">Enchiridion</button></div><span style="margin-right:auto"></span>
+<input id="search" type="search" placeholder="Search (typos are fine)" aria-label="Search passages">
+<div class="seg" id="langsw" role="group" aria-label="Language"><button data-m="en">English</button><button data-m="ta">தமிழ்</button><button data-m="both">Both</button></div>
+<button class="btn" id="mode" aria-label="Toggle light or dark">Light / Dark</button>
+<button class="btn" id="fbtn">Focus</button><button class="btn" id="exp">Back up</button><button class="btn" id="imp">Restore</button><input type="file" id="file" accept="application/json" hidden><span id="syncst" class="syncst" aria-live="polite"></span><button class="btn" id="acct">Sign in</button></header>
+<div class="wrap"><nav id="nav" aria-label="Themes"><label class="f"><input type="checkbox" id="onlyN"> Only passages with my thoughts</label><div id="themes"></div></nav>
+<main id="main"><div class="col" id="col"></div></main></div>
+<div id="focus" hidden role="dialog" aria-label="Focus reading"><div class="fh"><button class="btn" id="fclose">Close</button><span id="fcount"></span>
+<div class="seg" id="fmode"><button data-m="en">English</button><button data-m="ta">தமிழ்</button><button data-m="both">Both</button></div><button class="btn" id="fsm" aria-label="Smaller text">A−</button><button class="btn" id="fbg" aria-label="Larger text">A+</button></div>
+<div id="fbody"></div><div class="ff" id="ffoot"></div></div>
+<div id="qc" hidden role="dialog" aria-label="Quote image"><div class="qp"><canvas id="qcv" width="1080" height="1080"></canvas><div class="qo"><div class="seg" id="qlang"><button data-v="en">English</button><button data-v="ta">தமிழ்</button><button data-v="both">Both</button></div><div class="seg" id="qsty"></div><label id="qhlw"><input type="checkbox" id="qhl"> Highlighted part only</label></div>
+<div class="acts"><button class="btn pri" id="qsave">Save image</button><button class="btn" id="qclose">Close</button></div></div></div>
+
+<div id="auth" hidden role="dialog" aria-label="Account"><div class="qp">
+<h2 id="atitle">Sign in to sync</h2><p id="amsg" class="amsg"></p>
+<div id="aform"><input id="aemail" type="email" placeholder="Email" autocomplete="email"><input id="apass" type="password" placeholder="Password (at least 6 characters)" autocomplete="current-password">
+<div class="acts"><button class="btn pri" id="asignin">Sign in</button><button class="btn" id="asignup">Create account</button><button class="btn" id="amagic">Email me a sign-in link</button></div></div>
+<div id="aout" hidden><p id="auser"></p><div class="acts"><button class="btn pri" id="asyncnow">Sync now</button><button class="btn" id="asignout">Sign out</button><button class="btn" id="awipe">Sign out and clear this device</button></div></div>
+<div class="acts" style="margin-top:12px"><button class="btn" id="aclose">Close</button></div></div></div>
+<button id="fab" class="btn pri" hidden></button>
+<aside id="drawer" aria-label="My thoughts"><h2><span id="dref"></span><button class="btn" id="dclose">Close</button></h2><div class="q" id="dq"></div>
+<textarea id="dta" placeholder="Write your thoughts on this passage. They save automatically in this browser."></textarea><div class="st" id="dst"></div></aside>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

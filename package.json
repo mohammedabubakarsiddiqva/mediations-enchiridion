@@ -1,0 +1,19 @@
+{
+  "name": "stoic-reader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Meditations and Enchiridion, organized by theme, with Tamil translations, notes, highlights and optional cloud sync.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/sync.test.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
