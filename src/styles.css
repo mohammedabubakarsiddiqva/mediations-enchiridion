@@ -77,3 +77,22 @@ textarea{width:100%;min-height:120px;background:var(--bg);border:1px solid var(-
 .syncst{font-size:13px;color:var(--mute);min-width:5.5em;text-align:right}
 @media (max-width:860px){.syncst{display:none}}
 .idxsw{display:flex;margin:0 0 12px}.idxsw button{flex:1;font-size:13px;padding:7px 6px}
+
+/* ---- compact phone header ---- */
+#more,.hb{display:none}.sp{margin-right:auto}
+header{transition:margin-top .2s ease;position:relative;z-index:3}
+@media (max-width:860px){
+ header{gap:8px;padding:8px 12px}
+ .sp{display:none}
+ #menu{order:1}#libsw{order:2}#more{order:3;display:inline-block;margin-left:auto}
+ .hb{display:block;flex-basis:100%;height:0;margin:-4px 0 0}.hb1{order:4}.hb2{order:8}
+ #langsw{order:5}#search{order:6;flex:1;min-width:0;width:auto}#fbtn{order:7}
+ #mode,#exp,#imp,#acct,#syncst{order:9;display:none}
+ header.hopen #mode,header.hopen #exp,header.hopen #imp,header.hopen #acct{display:inline-block}
+ header.hopen #syncst{display:inline-block;text-align:left}
+ #libsw button{font-size:15px;padding:6px 10px}
+ #langsw button{padding:6px 10px}
+ .btn,.seg button{min-height:44px}
+ #search{min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){header{transition:none}}

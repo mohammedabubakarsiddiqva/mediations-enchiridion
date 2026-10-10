@@ -272,3 +272,12 @@ renderNav();render();
   $('#asignout').onclick=async()=>{await Sync.signOut(false);box.hidden=true};
   $('#awipe').onclick=()=>{if(confirm('This removes your saved data from this device (it stays in your account). Continue?'))Sync.signOut(true)};
 }
+
+{const h=document.querySelector('header'),m=$('#main'),mo=$('#more');
+ mo.onclick=()=>{const o=h.classList.toggle('hopen');mo.setAttribute('aria-expanded',o);if(h.style.marginTop){h.style.marginTop=''}};
+ const sp=()=>{$('#search').placeholder=innerWidth<=860?'Search':'Search (typos are fine)'};sp();addEventListener('resize',sp);
+ let last=0,hid=false;
+ m.addEventListener('scroll',()=>{if(innerWidth>860){if(hid){h.style.marginTop='';hid=false}return}
+  const y=m.scrollTop,d=y-last;last=y;if(h.classList.contains('hopen'))return;
+  if(d>10&&y>120&&!hid){h.style.marginTop=-h.offsetHeight+'px';hid=true}else if((d<-10||y<60)&&hid){h.style.marginTop='';hid=false}},{passive:true});
+ document.addEventListener('click',e=>{if(h.classList.contains('hopen')&&!h.contains(e.target)){h.classList.remove('hopen');mo.setAttribute('aria-expanded','false')}})}
