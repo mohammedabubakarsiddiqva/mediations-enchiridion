@@ -47,6 +47,13 @@ The workflow in `.github/workflows/ci.yml` runs the tests and a build on every p
 3. Deploy. Every later `git push` to `main` redeploys automatically.
 4. Copy your `https://....vercel.app` address into the Supabase URL settings (step 2.5).
 
+## Accounts and passwords
+
+- **Create an account** asks you to type the password twice and checks that both match (at least 8 characters). The "Show password" box lets you see what you typed.
+- **Forgot password?** on the sign-in page emails a reset link. Opening the link brings you back to the site, which asks for a new password (typed twice). For this to work, your site address must be listed under Supabase, Authentication, URL Configuration (Site URL and Redirect URLs).
+- **Change password** is in the account window once you are signed in.
+- **Locked out and no email arrives?** In the Supabase dashboard, open Authentication, Users, pick the user and choose "Send password recovery", or delete the user and create the account again (nothing is lost if it has no saved data yet).
+
 ## Notes
 
 - **Free tiers:** Vercel Hobby and Supabase Free are enough for personal use. Free Supabase projects pause after a week of no activity; open the Supabase dashboard and press Restore if that happens.

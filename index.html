@@ -24,10 +24,25 @@
 <div class="acts"><button class="btn pri" id="qsave">Save image</button><button class="btn" id="qclose">Close</button></div></div></div>
 
 <div id="auth" hidden role="dialog" aria-label="Account"><div class="qp">
-<h2 id="atitle">Sign in to sync</h2><p id="amsg" class="amsg"></p>
-<div id="aform"><input id="aemail" type="email" placeholder="Email" autocomplete="email"><input id="apass" type="password" placeholder="Password (at least 6 characters)" autocomplete="current-password">
-<div class="acts"><button class="btn pri" id="asignin">Sign in</button><button class="btn" id="asignup">Create account</button><button class="btn" id="amagic">Email me a sign-in link</button></div></div>
-<div id="aout" hidden><p id="auser"></p><div class="acts"><button class="btn pri" id="asyncnow">Sync now</button><button class="btn" id="asignout">Sign out</button><button class="btn" id="awipe">Sign out and clear this device</button></div></div>
+<h2 id="atitle">Sign in to sync</h2><p id="amsg" class="amsg" aria-live="polite"></p>
+<div id="p-in">
+<input id="aemail" type="email" placeholder="Email" autocomplete="email"><input id="apass" data-pw type="password" placeholder="Password" autocomplete="current-password">
+<label class="showpw"><input type="checkbox" class="spw"> Show password</label>
+<div class="acts"><button class="btn pri" id="asignin">Sign in</button></div>
+<div class="alinks"><button class="lnk" id="goup">Create an account</button><button class="lnk" id="goforgot">Forgot password?</button><button class="lnk" id="amagic">Email me a sign-in link</button></div>
+</div>
+<div id="p-up" hidden>
+<input id="uemail" type="email" placeholder="Email" autocomplete="email"><input id="upass" data-pw type="password" placeholder="Password (at least 8 characters)" autocomplete="new-password"><input id="upass2" data-pw type="password" placeholder="Type the password again" autocomplete="new-password">
+<label class="showpw"><input type="checkbox" class="spw"> Show passwords</label>
+<div class="acts"><button class="btn pri" id="asignup">Create account</button></div>
+<div class="alinks"><button class="lnk" id="goin">I already have an account</button></div>
+</div>
+<div id="p-new" hidden>
+<input id="npass" data-pw type="password" placeholder="New password (at least 8 characters)" autocomplete="new-password"><input id="npass2" data-pw type="password" placeholder="Type the new password again" autocomplete="new-password">
+<label class="showpw"><input type="checkbox" class="spw"> Show passwords</label>
+<div class="acts"><button class="btn pri" id="asetpw">Save new password</button><button class="btn" id="acancelpw">Cancel</button></div>
+</div>
+<div id="aout" hidden><p id="auser"></p><div class="acts"><button class="btn pri" id="asyncnow">Sync now</button><button class="btn" id="achange">Change password</button><button class="btn" id="asignout">Sign out</button><button class="btn" id="awipe">Sign out and clear this device</button></div></div>
 <div class="acts" style="margin-top:12px"><button class="btn" id="aclose">Close</button></div></div></div>
 <button id="fab" class="btn pri" hidden></button>
 <aside id="drawer" aria-label="My thoughts"><h2><span id="dref"></span><button class="btn" id="dclose">Close</button></h2><div class="q" id="dq"></div>

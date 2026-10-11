@@ -11,7 +11,7 @@ const anon = import.meta.env?.VITE_SUPABASE_ANON_KEY;
 export const enabled = Boolean(url && anon);
 
 let sb = null, user = null, timer = null, busy = false, lastPull = 0;
-let cb = { onUser() {}, onStatus() {}, onChange() {} };
+let cb = { onUser() {}, onStatus() {}, onChange() {}, onRecovery() {} };
 
 const ls = {
   get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
@@ -112,7 +112,10 @@ export async function init(opts = {}) {
   if (!sb) { status(''); return; }
   const { data } = await sb.auth.getSession();
   setUser(data?.session?.user);
-  sb.auth.onAuthStateChange((_e, session) => setUser(session?.user));
+  sb.auth.onAuthStateChange((event, session) => {
+    if (event === 'PASSWORD_RECOVERY') cb.onRecovery();
+    setUser(session?.user);
+  });
   if (typeof document !== 'undefined') {
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible' && user && Date.now() - lastPull > 20000) pull();
@@ -123,6 +126,8 @@ export async function init(opts = {}) {
 export const signIn = (email, password) => sb.auth.signInWithPassword({ email, password });
 export const signUp = (email, password) => sb.auth.signUp({ email, password, options: { emailRedirectTo: location.origin } });
 export const magicLink = (email) => sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin } });
+export const resetPassword = (email) => sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin });
+export const updatePassword = (password) => sb.auth.updateUser({ password });
 export async function signOut(clearLocal = false) {
   if (sb) await sb.auth.signOut();
   if (clearLocal) {
