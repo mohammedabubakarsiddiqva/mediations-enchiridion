@@ -101,3 +101,4 @@ header{transition:margin-top .2s ease;position:relative;z-index:3}
 .lnk{background:none;border:0;color:var(--acc);text-decoration:underline;padding:10px 0;font:14px var(--body);cursor:pointer}
 #auth .showpw{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--mute);margin:4px 0 8px}
 #auth .showpw input{display:inline-block;width:auto;margin:0}
+.jq.plain{color:var(--ink);font-size:17px}
