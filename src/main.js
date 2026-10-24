@@ -150,9 +150,16 @@ document.addEventListener('click',e=>{const u=e.target.closest&&e.target.closest
  if(!e.target.closest('#fab')){fab.dataset.mode='';if(getSelection().isCollapsed)hideFab()}});
 fab.addEventListener('pointerdown',e=>{e.preventDefault();const f=fabAct;fab.dataset.mode='';if(f)f()});
 document.querySelectorAll('#langsw button').forEach(b=>b.onclick=()=>{UI.mode=b.dataset.m;saveUI();anchoredRender()});
-{const sb=$('#search');['autocomplete:off','name:passage-search','autocapitalize:off','spellcheck:false','data-1p-ignore:','data-lpignore:true','enterkeyhint:search'].forEach(x=>{const i=x.indexOf(':');sb.setAttribute(x.slice(0,i),x.slice(i+1))});
- const clr=()=>{if(!UI.q&&sb.value)sb.value=''};sb.value='';[100,400,1200].forEach(t=>setTimeout(clr,t));addEventListener('pageshow',clr);
- let sdt;const go=()=>{UI.q=sb.value;clearTimeout(sdt);sdt=setTimeout(()=>{render();$('#main').scrollTop=0},150)};sb.addEventListener('input',go);sb.addEventListener('search',go)}
+{const sb=$('#search');
+ const unlock=()=>{sb.removeAttribute('readonly')};
+ sb.addEventListener('pointerdown',unlock);sb.addEventListener('focus',unlock);sb.addEventListener('touchstart',unlock,{passive:true});
+ sb.addEventListener('blur',()=>{if(!sb.value)sb.setAttribute('readonly','')});
+ // anything that shows up while the box is not focused (browser autofill, form restore) is not the user's search
+ const wipe=()=>{if(document.activeElement!==sb&&sb.value){sb.value='';if(UI.q){UI.q='';render()}}};
+ sb.value='';let n=0;const iv=setInterval(()=>{wipe();if(++n>30)clearInterval(iv)},100);
+ ['pageshow','visibilitychange','DOMContentLoaded','load'].forEach(ev=>addEventListener(ev,wipe));
+ let sdt;const go=()=>{if(document.activeElement!==sb){wipe();return}UI.q=sb.value;clearTimeout(sdt);sdt=setTimeout(()=>{render();$('#main').scrollTop=0},150)};
+ sb.addEventListener('input',go);sb.addEventListener('search',go)}
 $('#onlyN').onchange=e=>{only=e.target.checked;render()};
 $('#menu').onclick=()=>$('#nav').classList.toggle('open');
 $('#mode').onclick=()=>{const r=document.documentElement,dark=getComputedStyle(r).getPropertyValue('--bg').trim()==='#121b1c';r.dataset.theme=dark?'light':'dark';store.set('med:theme',r.dataset.theme)};
